@@ -11,4 +11,4 @@ files = ["c12-pg-n13-ls09",
          "o15--n15-wc12"]
 
 cno_net = PythonNetwork(files)
-cno_net.write_network("cno_rhs.py")
+cno_net.write_network("cno_rhs2.py")
