@@ -71,7 +71,7 @@ if __name__ == "__main__":
         
         TimeScaling=10
         tmax = TimeScaling*np.abs(X0[cno.ip]/Xdot[cno.ip])
-        print("tmax: {}".format(tmax))
+#         print("tmax: {}".format(tmax))
     
         nsteps = 100
     
