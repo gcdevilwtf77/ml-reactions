@@ -29,28 +29,14 @@ def burn(X0, rho, T, tmax, nsave):
     r.set_f_params(rho, T)
 
     dt = tmax/nsave
-
-#    t_out = []
-#    H_out = []
-#    He_out = []
-#    O14_out = []
-#    O15_out = []
     AllDataPoints=[]
     AllDataPoints.append(np.append(r.y,[r.t,rho,T]))
-
-#    print(t, X0[cno.ip], X0[cno.io14])
 
     istep = 1
     while r.successful() and istep <= nsave:
         r.integrate(t+dt*istep)
 
         if r.successful():
-#            print(r.t, r.y[cno.ip], r.y[cno.io14])
-#            t_out.append(r.t)
-#            H_out.append(r.y[cno.ip])
-#            He_out.append(r.y[cno.ihe4])
-#            O14_out.append(r.y[cno.io14])
-#            O15_out.append(r.y[cno.io15])
             AllDataPoints.append(np.append(r.y,[r.t,rho,T]))
             istep = istep + 1
         else:
@@ -83,9 +69,9 @@ if __name__ == "__main__":
         
         Xdot = cno.rhs(0.0, X0, rho, Temperatures)
         
-        TimeScaling=2
+        TimeScaling=10
         tmax = TimeScaling*np.abs(X0[cno.ip]/Xdot[cno.ip])
-#        print("tmax: {}".format(tmax))
+        print("tmax: {}".format(tmax))
     
         nsteps = 100
     
@@ -114,7 +100,7 @@ if __name__ == "__main__":
         
     print((time()-StartTime)/60**2)
     
-    AllDataSpatialPointsDataFrame.to_csv('IntitialTemperatures'+str(TimeScaling)+'.csv',index=False)
+    AllDataSpatialPointsDataFrame.to_csv('IntitialTemperaturestMax'+str(TimeScaling)+'.csv',index=False)
 
 #    plt.loglog(t, np.array(X_H), label="H1")
 #    plt.loglog(t, np.array(X_He), label="He4")
